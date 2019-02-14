@@ -13,7 +13,7 @@
 
 wrike_workflows <- function() {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/workflows")
     GETworkflows <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))

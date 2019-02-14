@@ -14,7 +14,7 @@
 
 wrike_folders <- function() {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/folders")
     GETfolders <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))

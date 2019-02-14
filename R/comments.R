@@ -15,7 +15,7 @@
 
 
 wrike_get_comments <- function(folder_id) {
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/folders/", folder_id, "/comments")
     GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
@@ -45,7 +45,7 @@ wrike_get_comments <- function(folder_id) {
 
 
 wrike_url_comment_post <- function(taskId, commentText) {
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     APIcoms <- paste0("https://www.wrike.com/api/v3/tasks/", taskId, "/comments?text=", commentText)
     POSTsimplecom <- httr::POST(APIcoms, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
@@ -76,7 +76,7 @@ wrike_url_comment_post <- function(taskId, commentText) {
 
 create_wrike_task_comment <- function(task_id, comment_text) {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id, "/comments")
     body <- list(text = comment_text)
@@ -108,7 +108,7 @@ create_wrike_task_comment <- function(task_id, comment_text) {
 
 get_wrike_task_comment <- function(task_id) {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     APIcoms <- paste0("https://www.wrike.com/api/v3/tasks/", task_id, "/comments")
     GETcoms <- httr::GET(APIcoms, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
@@ -141,7 +141,7 @@ get_wrike_task_comment <- function(task_id) {
 
 get_wrike_comments <- function() {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/comments?plainText=true")
     GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))

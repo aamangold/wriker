@@ -17,7 +17,7 @@
 
 wrike_custom_field_exists <- function(folder_id, custom_field_id) {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0('https://www.wrike.com/api/v3/folders/', folder_id, '/tasks?fields=["customFields"]')
     GETdata <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
@@ -56,7 +56,7 @@ wrike_custom_field_exists <- function(folder_id, custom_field_id) {
 #'
 
 wrike_custom_field_on_task <- function(task_id, custom_field_id){
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id)
     GET <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
@@ -88,7 +88,7 @@ wrike_custom_field_on_task <- function(task_id, custom_field_id){
 
 wrike_custom_field_url <- function() {
 
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     print(paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/customfields"))
 
@@ -114,7 +114,7 @@ wrike_custom_field_url <- function() {
 #'
 
 wrike_custom_field_update <- function(task_id, custom_field_id, custom_field_value) {
-    wrikeR::authenticate()
+    wriker::authenticate()
 
     tmp <- jsonlite::toJSON(data.frame(id = custom_field_id, value = custom_field_value))
     tmp2 <- list(customFields = tmp)

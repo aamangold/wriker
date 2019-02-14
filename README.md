@@ -1,8 +1,4 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
 # wriker
 R wrapper for Wrike Project Management API. Package allows enterprise users to
     retreive information on their task, folder, comment, workflow, and custom 
@@ -89,7 +85,8 @@ wriker::wrike_custom_field_url()
 #### Create custom field value on Wrike task
 
 ```
-wriker::wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue")
+wriker::wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", 
+                                  custom_field_value = "myvalue")
 
 ```
 

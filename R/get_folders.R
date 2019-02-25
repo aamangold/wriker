@@ -22,3 +22,31 @@ wrike_folders <- function() {
     folders <- purrr::map_df(fold_content, magrittr::extract, c("id", "title"))
     return(folders)
 }
+
+
+#' @title Wrike Folders IDs
+#'
+#' @description This function grabs the folder id when given the folder name. 
+#'
+#' @import dplyr
+#' @import magrittr
+#'
+#' @export
+#'
+#' @examples
+#' wrike_folder_id("My Folder Name")
+#'
+
+wrike_folder_id <- function(folder_name) {
+    
+    folder_id <- wrike_folders() %>% 
+        dplyr::filter(title == folder_name) %>% 
+        dplyr::pull(id)
+    
+    return(folder_id)
+}
+
+
+
+
+

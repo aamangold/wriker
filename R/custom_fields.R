@@ -110,7 +110,7 @@ wrike_custom_field_url <- function() {
 #'
 #' @export
 #' @examples
-#' wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue") <-- UPDATE for gh
+#' wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue") 
 #'
 
 wrike_custom_field_update <- function(task_id, custom_field_id, custom_field_value) {

@@ -17,6 +17,6 @@ wrike_custom_field_update(task_id, custom_field_id, custom_field_value)
 This function populates a custom field from specified task id
 }
 \examples{
-wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue") <-- UPDATE for gh
+wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue") 
 
 }

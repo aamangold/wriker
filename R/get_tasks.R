@@ -14,9 +14,7 @@
 
 
 wrike_tasks <- function(folder_name) {
-    folder_id <- wriker::wrike_folders() %>%
-        filter(title == folder_name) %>%
-        pull(id)
+    folder_id <- wriker::wrike_folder_id(folder_name)
 
     wriker::authenticate()
 

@@ -1,8 +1,17 @@
 
 # wriker
-R wrapper for Wrike Project Management API. Package allows enterprise users to
+R wrapper for Wrike Project Management API. Package allows Wrike users to
     retreive information on their task, folder, comment, workflow, and custom 
-    field data.
+    field data through Wrike's API.
+
+## Table of Contents
+
+-   [Getting Started](#Getting_Started)
+-   [Setting Your Authentication Keys](#Authentication)
+-   [Usage](#Usage)
+    -   [Query Tasks](#Query_Tasks)
+    -   [Custom Fields](#Custom_Fields)
+    -   [Comments](#Comments)
 
 
 ## Installation
@@ -10,6 +19,7 @@ R wrapper for Wrike Project Management API. Package allows enterprise users to
 devtools::install_github("aamangold/wriker")
 ```
 
+<a name="Getting_Started"></a> 
 ## Authentication
 ### Getting Started
 
@@ -19,6 +29,7 @@ devtools::install_github("aamangold/wriker")
 
 First, follow the instructions in the Wrike developer portal to create a Wrike API App and generate an authentication key. The steps below outline how to store your keys in the .REnviron file. 
 
+<a name="Authentication"></a> 
 ### Setting your Wrike authentication key
 Note that this package uses Wrike API v3, which will be sunseted 6/30/2019. Package will be updated to v4 in the future.
 
@@ -48,8 +59,10 @@ cat("WRIKE_ACCOUNT_ID=EnterYourIDHere\n",
     append=TRUE)
 ```
 
+<a name="Usage"></a> 
 ## Usage
 
+<a name="Query_Tasks"></a> 
 ### Query Tasks
 #### Pull task data from a specific folder. 
 To get more complete information on each's task status, join with workflows.
@@ -59,7 +72,6 @@ workflows <- wriker::wrike_workflows()
 
 my_folder_tasks %>% 
     dplyr::left_join(workflows, by = "customStatusId")
-
 ```
 
 #### Pull task data from multiple folders
@@ -74,7 +86,7 @@ allfields <- wriker::wrike_task_data("IEABOGRQKQAN3QOA")
 specific_fields <- wriker::wrike_task_data("IEABOGRQKQAN3QOA", fields = c("title", "status", "id"))
 ```
 
-
+<a name="Custom_Fields"></a> 
 ### Custom Fields
 #### Find your custom field ID
 Each custom field is assigned an ID that can be used to query and update corresponding values. Find a list of all your org's custom fields with corresponding IDs by going to URL from this:
@@ -85,9 +97,7 @@ wriker::wrike_custom_field_url()
 #### Create custom field value on Wrike task
 
 ```
-wriker::wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", 
-                                  custom_field_value = "myvalue")
-
+wriker::wrike_custom_field_update(task_id = "IEABOGRQKQAN3QOA", custom_field_id = "IEAAAOH5JUAAABQ5", custom_field_value = "myvalue")
 ```
 
 #### Create custom field values on multiple Wrike tasks
@@ -96,7 +106,7 @@ Create a list with column names of task_id, custom_field_id, and custom_field_va
 my_field_list %>% purrr::pmap(wriker::wrike_custom_field_update)
 ```
 
-
+<a name="Comments"></a> 
 ### Comments
 You can format your comments using the HTML tags listed [here](https://developers.wrike.com/documentation/api/datatypes/description).
 

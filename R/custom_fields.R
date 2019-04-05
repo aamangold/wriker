@@ -1,18 +1,14 @@
 #' @title Wrike Custom Field Use by Folder
 #'
-#' @description This function pulls a list of your task ids within a folder that have a specified custom field filled out
+#' @description This function pulls a list of your task ids within a folder that have a specified custom field filled out OR that have the specified value.
 #' @param folder_id Wrike folder id. Use \code{\link{wrike_folders}} function to determine if needed.
-#' @param custom_field_id Wrike custom field id. Use \code{\link{wrike_custom_field_url}} function to determin if needed.
+#' @param custom_field_id Wrike custom field id or search for a value in the custom fields (ex: a product code). Use \code{\link{wrike_custom_field_url}} function to determine if needed.
 #' @return A list of all Wrike task ids in a folder that have the specified custom field filled out
-#' @import httr
-#' @import purrr
-#' @import magrittr
-#' @import stringr
-#' @import dplyr
 #'
 #' @export
 #' @examples
 #' wrike_custom_field_exists(folder_id = "IEAAAOH5I4AB7JFG", custom_field_id = "IEAAAOH5JUAAABQ5")
+#' wrike_custom_field_exists(folder_id = "IEAAAOH5I4AB7JFG", custom_field_id = "Solar Inspection")
 
 
 wrike_custom_field_exists <- function(folder_id, custom_field_id) {

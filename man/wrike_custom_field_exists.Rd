@@ -9,14 +9,15 @@ wrike_custom_field_exists(folder_id, custom_field_id)
 \arguments{
 \item{folder_id}{Wrike folder id. Use \code{\link{wrike_folders}} function to determine if needed.}
 
-\item{custom_field_id}{Wrike custom field id. Use \code{\link{wrike_custom_field_url}} function to determin if needed.}
+\item{custom_field_id}{Wrike custom field id or search for a value in the custom fields (ex: a product code). Use \code{\link{wrike_custom_field_url}} function to determine if needed.}
 }
 \value{
 A list of all Wrike task ids in a folder that have the specified custom field filled out
 }
 \description{
-This function pulls a list of your task ids within a folder that have a specified custom field filled out
+This function pulls a list of your task ids within a folder that have a specified custom field filled out OR that have the specified value.
 }
 \examples{
 wrike_custom_field_exists(folder_id = "IEAAAOH5I4AB7JFG", custom_field_id = "IEAAAOH5JUAAABQ5")
+wrike_custom_field_exists(folder_id = "IEAAAOH5I4AB7JFG", custom_field_id = "Solar Inspection")
 }

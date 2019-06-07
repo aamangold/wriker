@@ -17,8 +17,9 @@
 wrike_get_comments <- function(folder_id) {
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/folders/", folder_id, "/comments")
-    GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/folders/", folder_id, "/comments")    
+    #url <- paste0("https://www.wrike.com/api/v3/folders/", folder_id, "/comments")
+    GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
     coms <- httr::content(GETcoms)
     comments <- purrr::map_df(coms$data, magrittr::extract)
     return(comments)
@@ -47,8 +48,8 @@ wrike_get_comments <- function(folder_id) {
 wrike_url_comment_post <- function(taskId, commentText) {
     wriker::authenticate()
 
-    APIcoms <- paste0("https://www.wrike.com/api/v3/tasks/", taskId, "/comments?text=", commentText)
-    POSTsimplecom <- httr::POST(APIcoms, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    APIcoms <- paste0("https://www.wrike.com/api/v4/tasks/", taskId, "/comments?text=", commentText)
+    POSTsimplecom <- httr::POST(APIcoms, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 }
 
 
@@ -78,11 +79,11 @@ create_wrike_task_comment <- function(task_id, comment_text) {
 
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id, "/comments")
+    url <- paste0("https://www.wrike.com/api/v4/tasks/", task_id, "/comments")
     body <- list(text = comment_text)
 
     post_comment <- httr::POST(url, body = body, encode = "json",
-                               httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+                               httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
 }
 
@@ -110,8 +111,8 @@ get_wrike_task_comment <- function(task_id) {
 
     wriker::authenticate()
 
-    APIcoms <- paste0("https://www.wrike.com/api/v3/tasks/", task_id, "/comments")
-    GETcoms <- httr::GET(APIcoms, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    APIcoms <- paste0("https://www.wrike.com/api/v4/tasks/", task_id, "/comments")
+    GETcoms <- httr::GET(APIcoms, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
     comments <- httr::content(GETcoms)[["data"]]
 
@@ -143,8 +144,9 @@ get_wrike_comments <- function() {
 
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/comments?plainText=true")
-    GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    #url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/comments?plainText=true")
+    url <- paste0("https://www.wrike.com/api/v4/comments?plainText=true")
+    GETcoms <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
     comments <- httr::content(GETcoms)[["data"]]
     comment_extract <- comments %>% purrr::map_df(magrittr::extract)
 

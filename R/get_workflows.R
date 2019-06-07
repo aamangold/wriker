@@ -14,9 +14,10 @@
 wrike_workflows <- function() {
 
     wriker::authenticate()
-
-    url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/workflows")
-    GETworkflows <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    
+    url <- paste0("https://www.wrike.com/api/v4/workflows")
+    #url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/workflows")
+    GETworkflows <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
     work <- httr::content(GETworkflows)[["data"]]
     work2 <- purrr::map(work, "customStatuses", "id")
 

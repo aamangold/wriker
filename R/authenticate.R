@@ -23,5 +23,11 @@ authenticate <- function() {
         stop("Please set env var WRIKE_V3_KEY",
              call. = FALSE)
     }
+    
+    v4_key <<- Sys.getenv('WRIKE_V4_KEY')
+    if (identical(v4_key, "")) {
+        stop("Please set env var WRIKE_V4_KEY",
+             call. = FALSE)
+    }
 
 }

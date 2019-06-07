@@ -15,8 +15,8 @@ wrike_custom_field_exists <- function(folder_id, custom_field_id) {
 
     wriker::authenticate()
 
-    url <- paste0('https://www.wrike.com/api/v3/folders/', folder_id, '/tasks?fields=["customFields"]')
-    GETdata <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0('https://www.wrike.com/api/v4/folders/', folder_id, '/tasks?fields=["customFields"]')
+    GETdata <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
     dat <- httr::content(GETdata)
     dat2 <- dat[[2]]
@@ -54,8 +54,8 @@ wrike_custom_field_exists <- function(folder_id, custom_field_id) {
 wrike_custom_field_on_task <- function(task_id, custom_field_id){
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id)
-    GET <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/tasks/", task_id)
+    GET <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
     data <- httr::content(GET)
     data2 <- data[["data"]]
@@ -80,7 +80,7 @@ wrike_custom_field_on_task <- function(task_id, custom_field_id){
 #' @export
 #' @examples
 #' wrike_custom_field_url()
-#'
+#' DEPRECATED
 
 wrike_custom_field_url <- function() {
 
@@ -115,11 +115,11 @@ wrike_custom_field_update <- function(task_id, custom_field_id, custom_field_val
     tmp <- jsonlite::toJSON(data.frame(id = custom_field_id, value = custom_field_value))
     tmp2 <- list(customFields = tmp)
 
-    url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id)
+    url <- paste0("https://www.wrike.com/api/v4/tasks/", task_id)
     body <- tmp2
 
     httr::PUT(url, body = body, encode = "json",
-              add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+              add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
 }
 

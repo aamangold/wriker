@@ -12,8 +12,9 @@ wrike_folders <- function() {
 
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/folders")
-    GETfolders <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/folders")
+    #url <- paste0("https://www.wrike.com/api/v3/accounts/", account_id, "/folders")
+    GETfolders <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
     fold_content <- httr::content(GETfolders)[[2]]
     folders <- purrr::map_df(fold_content, magrittr::extract, c("id", "title"))
     return(folders)
@@ -58,8 +59,8 @@ wrike_folder_tree <- function(folder_name) {
     
     folder_id <- wriker::wrike_folder_id(folder_name)
     
-    url <- paste0("https://www.wrike.com/api/v3/folders/", folder_id, "/folders")
-    GETfolders <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/folders/", folder_id, "/folders")
+    GETfolders <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
     fold_content <- httr::content(GETfolders)[[2]]
     folders <- purrr::map_df(fold_content, magrittr::extract, c("id", "title"))
     return(folders)

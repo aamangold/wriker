@@ -18,8 +18,8 @@ wrike_tasks <- function(folder_name) {
 
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/folders/", folder_id, "/tasks")
-    GET_request <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/folders/", folder_id, "/tasks")
+    GET_request <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
     tasks <- httr::content(GET_request)[[2]]
 
@@ -60,8 +60,8 @@ wrike_task_data <- function(task_id, fields = NULL) {
 
     wriker::authenticate()
 
-    url <- paste0("https://www.wrike.com/api/v3/tasks/", task_id)
-    GET_request <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v3_key, sep = " ")))
+    url <- paste0("https://www.wrike.com/api/v4/tasks/", task_id)
+    GET_request <- httr::GET(url, httr::add_headers(Authorization = paste("Bearer", v4_key, sep = " ")))
 
     tasks <- httr::content(GET_request)[[2]]
 

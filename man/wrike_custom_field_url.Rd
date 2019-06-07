@@ -11,5 +11,5 @@ This function gives you the URL to access your account's custom fields
 }
 \examples{
 wrike_custom_field_url()
-
+DEPRECATED
 }

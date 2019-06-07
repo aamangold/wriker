@@ -13,11 +13,11 @@
 
 wrike_account_data <- function() {
 
-    v3_key <- Sys.getenv('WRIKE_V3_KEY')
+    wriker::authenticate()
 
-    url <- "https://www.wrike.com/api/v3/accounts"
+    url <- "https://www.wrike.com/api/v4/account"
     get <- httr::GET(url,
-                     httr::add_headers(Authorization = paste("Bearer", v3_key,
+                     httr::add_headers(Authorization = paste("Bearer", v4_key,
                                                              sep = " ")))
 
     account <- httr::content(get)[["data"]]
